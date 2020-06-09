@@ -52,6 +52,12 @@ axios.get('https://swapi.dev/api/people/?page=1')
 
 //  ADD CHARACTER TO TEAM ON CLICK
 document.querySelector('.add-button').addEventListener('click', () => {
+  // Check to see if there are already three team members
+  const table = document.querySelectorAll('.table2 tr');
+  console.log()
+  if (table.length === 4) {
+    alert('You cannot have more than three team members')
+  } else {
   // Instantiate new character from selection box
   const char = new Character(name.innerText, eyecol.innerText, weight.innerText, height.innerText);
   // Add the character to the team-member box
@@ -62,6 +68,7 @@ document.querySelector('.add-button').addEventListener('click', () => {
   eyecol.innerText = '';
   height.innerText = '';
   weight.innerText = '';
+}
 })
 
 
@@ -85,9 +92,24 @@ class UI {
       <td>${char.eyecol}</td>
       <td>${char.weight}</td>
       <td>${char.height}</td>
-      <td>X</td>
+      <td class="delete">X</td>
       `
     const table = document.querySelector('.table2');  
     table.appendChild(row);
   }
+
+  removeFromUi (e) {
+    if (e.target.className.includes('delete')) {
+      e.target.parentElement.remove()
+    }
+  }
+
 }
+
+// EVENT LISTENER TO REMOVE TEAM MEMBER
+document.body.addEventListener('click', (e) => {
+ const ui = new UI(e);
+ ui.removeFromUi(e);
+})
+
+

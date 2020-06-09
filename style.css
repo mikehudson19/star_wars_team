@@ -35,3 +35,12 @@ table {
   margin-left: 13rem;
 }
 
+.delete:hover {
+  cursor: pointer;
+}
+
+.alert {
+  background: blue;
+  height: 2rem;
+  visibility: hidden;
+}
