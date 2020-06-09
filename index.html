@@ -10,13 +10,13 @@
   <h1>Star Wars Team Builder</h1>
   <form id="search-form" action="">
     <input type="text" name="input" id="input" placeholder="Type character here">
-    <button type="submit">Submit</button>
+    <button type="submit" id="submit">Submit</button>
   </form>
   <div class="character-info">
     <table>
       <tr>
          <td class='one'>Name</td>
-         <td>Row 1, Column 2</td>
+         <td class='td-name'></td>
       </tr>
       
       <tr>
@@ -39,6 +39,7 @@
   <div class="your-team">
 
   </div>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <script src="app.js"></script>
 </body>
 </html>
