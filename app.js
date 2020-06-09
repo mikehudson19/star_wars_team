@@ -32,6 +32,9 @@ axios.get('https://swapi.dev/api/people/?page=1')
   console.log('Ready');
   // Event listener for submit button
   submit.addEventListener('click', (e) => {
+    if (input.value === '') {
+      alert('you need to enter a valid star wars character')
+    } else {
     // Populate the selection box on UI with the character the user has sumbitted
     characterArr.forEach((char) => {
       if (input.value === char.name) {
@@ -39,8 +42,11 @@ axios.get('https://swapi.dev/api/people/?page=1')
         eyecol.innerText = char.eye_color;
         weight.innerText = char.mass;
         height.innerText = char.height;
-      }
-    })
+  } 
+})
+
+    }
+    
     // Reset the input to blank
     input.value = '';
     e.preventDefault();
@@ -52,16 +58,16 @@ axios.get('https://swapi.dev/api/people/?page=1')
 
 //  ADD CHARACTER TO TEAM ON CLICK
 document.querySelector('.add-button').addEventListener('click', () => {
+  const ui = new UI();
   // Check to see if there are already three team members
   const table = document.querySelectorAll('.table2 tr');
   console.log()
-  if (table.length === 4) {
-    alert('You cannot have more than three team members')
+  if (table.length === 2) {
+    ui.createAlert('Didnt fucking work mate', 'failure')
   } else {
   // Instantiate new character from selection box
   const char = new Character(name.innerText, eyecol.innerText, weight.innerText, height.innerText);
   // Add the character to the team-member box
-  const ui = new UI();
   ui.addToUi(char);
   // Clear the fields in the selection box
   name.innerText = '';
@@ -102,6 +108,16 @@ class UI {
     if (e.target.className.includes('delete')) {
       e.target.parentElement.remove()
     }
+  }
+
+  createAlert(message, result) {
+    const alertUI = document.querySelector('.alert');
+    const alert = document.createElement('p');
+    alert.innerText = `${message}`;
+    alertUI.className = `alert ${result}`
+    alertUI.appendChild(alert);
+    alertUI.style.visibility = 'visible';
+    console.log(alertUI)
   }
 
 }

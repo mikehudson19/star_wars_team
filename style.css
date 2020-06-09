@@ -43,4 +43,9 @@ table {
   background: blue;
   height: 2rem;
   visibility: hidden;
+  color: white;
+}
+
+.failure {
+  background: red;
 }
