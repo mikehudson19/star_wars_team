@@ -44,8 +44,25 @@ table {
   height: 2rem;
   visibility: hidden;
   color: white;
+  text-align: center;
 }
 
 .failure {
   background: red;
+}
+
+.success {
+  background: green;
+}
+
+.filter-list {
+  z-index: 2;
+  background: grey;
+  position: fixed;
+  top: 8.1rem;
+  list-style: none;
+}
+
+.filter-list li:hover {
+  cursor: pointer;
 }
