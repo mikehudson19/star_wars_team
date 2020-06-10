@@ -164,15 +164,25 @@ class UI {
     },2500)
   }
 
+  static removeFromConsideration() {
+      // Clear the fields in the selection box
+      name.innerText = '';
+      eyecol.innerText = '';
+      height.innerText = '';
+      weight.innerText = '';
+   
+  }
 }
 
-// EVENT LISTENER TO REMOVE TEAM MEMBER
+// EVENT LISTENERS
+// Remove team member from team
 document.body.addEventListener('click', (e) => {
  const ui = new UI(e);
  ui.removeFromUi(e);
 })
 
-
+// Remove character from selection box
+document.querySelector('.remove-button').addEventListener('click', UI.removeFromConsideration)
 
 
 
