@@ -25,18 +25,17 @@ body {
 
 .add-button {
   margin: 2rem 0;
-
-
 }
 
 table {
   border-spacing: 1rem;
   width: 33rem;
-  margin-left: 13rem;
+  /* margin-left: 6rem; */
 }
 
 .delete:hover {
   cursor: pointer;
+  color: red;
 }
 
 .alert {
@@ -65,4 +64,28 @@ table {
 
 .filter-list li:hover {
   cursor: pointer;
+}
+
+thead td {  
+  font-weight: bold;
+}
+
+h1 {
+  text-align: center;
+}
+
+.btn { 
+  width: 10rem;
+  padding: 6px 0;
+}
+
+.btn:hover {
+  cursor: pointer;
+  background: rgb(180, 180, 180);
+  color: white;
+  border: 1.5px solid grey;
+}
+
+#input {
+  padding: 6px;
 }

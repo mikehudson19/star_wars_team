@@ -15,10 +15,15 @@
     <input type="text" name="input" id="input" placeholder="Type character here">
     <ul class="filter-list">  
     </ul>
-    <button type="submit" id="submit">Submit</button>
+    <button class="btn" type="submit" id="submit">Submit</button>
   </form>
   <div class="character-info">
-    <table class="table1">
+    <table class="table1" style='width: 100%'>
+      <colgroup>
+        <col span="1" style="width: 1%;">
+        <col span="1" style="width: 20%;">
+     </colgroup>
+     <tbody>
       <tr>
          <td>Name</td>
          <td class='td-name'></td>
@@ -36,19 +41,28 @@
       <td>Films</td>
       <td class='td-films'></td>
    </tr>
+  </tbody>
    </table>
   </div>
   <div class="button-div">
-  <button class="add-button">Add To Team</button>
-  <button class="remove-button">Remove from Consideration</button>
+  <button class="btn add-button">Add To Team</button>
+  <button class="btn remove-button">Remove</button>
 </div>
   <div class="your-team">
-    <table class="table2">
+    <table class="table2" style='width: 100%'>
+      <colgroup>
+        <col span="1" style="width: 13%;">
+        <col span="1" style="width: 10%;">
+        <col span="1" style="width: 26%;">
+        <col span="1" style="width: 29%;">
+        <col span="1" style="width: 2%;">
+     </colgroup>
       <thead>
         <td>Name</td>
         <td>Home Planet</td>
         <td>Starships</td>
         <td>Films</td>
+        <td></td>
       </thead>
    </table>
   </div>
