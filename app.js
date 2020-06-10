@@ -40,25 +40,35 @@ axios.get('https://swapi.dev/api/people/?page=1')
     characterArr.forEach((char) => {
       const starships = [];
       if (input.value === char.name) {
+        // Add name to UI
+        name.innerText = char.name;
+        
+        // Add homeplanet to UI
         axios.get(char.homeworld)
         .then((res) => {
           home.innerText = res.data.name;
         })
-
+        // Add starships to UI
         const starships = [];
         async function getStarships () {
           for (let i = 0; i < char.starships.length; i++) {
             starships.push(axios.get(char.starships[i]).then(res => res.data.name));
           }
+            let newElement = document.createElement('div');
           const shipResults = await Promise.all(starships);
           if (shipResults.length === 0) {
             ships.innerText = 'None';
           } else {
-            ships.innerText = shipResults;
+            const html = shipResults.map((obj) => {
+              return `<span> ${obj}</span>` 
+            })
+            ships.innerHTML = html;
+            
           }
         }
         getStarships();
-
+        
+        // Add films to UI
         const filmsArr = [];
         async function getFilms () {
           for (let i = 0; i < char.films.length; i++) {
@@ -68,12 +78,16 @@ axios.get('https://swapi.dev/api/people/?page=1')
           if (filmResults.length === 0) {
             films.innerText = 'None';
           } else {
-            films.innerText = filmResults;
+            console.log(filmResults)
+            const html = filmResults.map((obj) => {
+              return `<span> ${obj}</span>` 
+            })
+            films.innerHTML = html;
+            
           }
         }
         getFilms();
        
-        name.innerText = char.name;
   } 
 })
 }   
