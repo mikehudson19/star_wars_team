@@ -60,10 +60,18 @@ table {
   position: fixed;
   top: 8.1rem;
   list-style: none;
+  width: 9.25rem;
+  padding-left: 0.8rem;
+}
+
+.filter-list li {
+  line-height: 1.45rem;
+
 }
 
 .filter-list li:hover {
   cursor: pointer;
+  color: rgb(59, 59, 59);
 }
 
 thead td {  
