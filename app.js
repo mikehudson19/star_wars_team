@@ -21,13 +21,7 @@ function addToArr(res) {
 // GET THE CHARACTER DATA FROM THE STAR WARS API
 axios.get('https://swapi.dev/api/people/?page=1')
   .then((res) => addToArr(res))
-  .then((res) => addToArr(res))
-  .then((res) => addToArr(res))
-  .then((res) => addToArr(res))
-  .then((res) => addToArr(res))
-  .then((res) => addToArr(res))
-  .then((res) => addToArr(res))
-  .then((res) => addToArr(res))
+ 
   .then((res) => {
     // Event listener for view button
     view.addEventListener('click', populateSelection)
