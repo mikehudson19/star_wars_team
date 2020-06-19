@@ -1,10 +1,3 @@
-const input = document.querySelector('#input');
-const view = document.querySelector('#view');
-const name = document.querySelector('.td-name')
-const home = document.querySelector('.td-home')
-const ships = document.querySelector('.td-ships')
-const films = document.querySelector('.td-films')
-
 const swapi = new Swapi;
 const ui = new UI;
 characters = [];
@@ -22,7 +15,13 @@ view.addEventListener('click', (e) => {
           }
         }
       })
-      ui.populateName(characters);
+      characters.forEach((char) => {
+        if (char.name === input.value) {
+          ui.populateName(char);
+          ui.populatePlanet(char);
+        }
+      })
+      
     }
   
 e.preventDefault();
