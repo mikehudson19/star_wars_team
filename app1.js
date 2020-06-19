@@ -2,9 +2,8 @@ const swapi = new Swapi;
 const ui = new UI;
 characters = [];
 
-
-
-window.onload = (event) => {
+// GET DATA FROM API ON WINDOW LOAD
+window.onload = () => {
   swapi.getCharacters()
   .then((res) => {
     for (let i = 0; i < 8; i ++) {
@@ -12,13 +11,13 @@ window.onload = (event) => {
         characters.push(res[i].data.results[j])
       }
     }
-    console.log(res);
   })
 };
 
+// VIEW CHARACTER IN SELECTION BOX
 view.addEventListener('click', (e) => {
     if (input.value === '') {
-      alert('cannot be blank')
+      ui.createAlert(`You need to enter a character.`, 'failure')
     } else {
       characters.forEach((char) => {
         if (char.name === input.value) {
@@ -28,9 +27,28 @@ view.addEventListener('click', (e) => {
           ui.populateFilms(char);
         }
       })
-      
     }
   
-e.preventDefault();
+  e.preventDefault();
+})
+
+// ADD CHARACTER TO TEAM
+addBtn.addEventListener('click', () => {
+  const char = new Character(name.innerText, home.innerText, ships.innerText, films.innerText);
+  ui.addToTeam(char);
+  ui.removeFromViewing();
+  ui.clearInput();
+  ui.createAlert(`${char.name} has been added to your team.`, 'success')
+})
+
+// REMOVE CHARACTER FROM TEAM
+document.addEventListener('click', (e) => {
+  ui.removeFromTeam(e);
+})
+
+// REMOVE CHARACTER FROM VIEWING BOX
+removeBtn.addEventListener('click', () => {
+  ui.removeFromViewing();
+  ui.clearInput();
 })
 
