@@ -50,13 +50,13 @@ class UI {
       filmsArr.push(axios.get(film).then(res => res.data.title))
     }) 
       const filims = await Promise.all(filmsArr);
-          if (filims.length === 0) {
-            films.innerText = 'None';
-          } else {
-            const html = filims.map((obj) => {
-              return `<span> ${obj}</span>`
-            })
-            films.innerHTML = html;
+      if (filims.length === 0) {
+        films.innerText = 'None';
+      } else {
+        const html = filims.map((obj) => {
+        return `<span> ${obj}</span>`
+        })
+        films.innerHTML = html;
           }
         }
 
@@ -71,12 +71,11 @@ class UI {
       `
     const table = document.querySelector('.table2');
     table.appendChild(row);
+    console.log(document.querySelectorAll('.table2 tr'))
     }
 
     removeFromTeam(e) {
-      if (e.target.className === 'delete') {
-        e.target.parentElement.remove();
-      }
+      if (e.target.className === 'delete') e.target.parentElement.remove();
     }
 
     removeFromViewing() {
@@ -101,6 +100,35 @@ class UI {
         alertDiv.style.visibility = 'hidden'
         text.remove();
       }, 2800)
+    }
+
+    findMatches(wordToMatch, array) {
+      return array.filter((obj) => {
+        const regex = new RegExp(wordToMatch, 'gi');
+        return obj.name.match(regex);
+      })
+    }
+
+    displayMatches(characterArr) {
+      const matches = this.findMatches(input.value, characterArr);
+      // Creating the HTML to append to the UL
+      const html = matches.map((obj) => {
+        return `<li><span class='name'>${obj.name}</span></li>`}).join('')
+
+      const list = document.querySelector('.filter-list');
+      list.innerHTML = html;
+
+      // When search field is empty, filtered array must not display
+      if (input.value === '') list.innerHTML = '';
+      
+      // When an item is selected from the filtered array, it must populate to the input field
+      const listItems = document.querySelectorAll('.filter-list');
+      listItems.forEach((obj, i) => {
+        listItems[i].addEventListener('click', (e) => {
+          input.value = e.target.innerText;
+          list.innerHTML = '';
+        })
+      })
     }
 
     }

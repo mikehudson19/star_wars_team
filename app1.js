@@ -23,8 +23,8 @@ view.addEventListener('click', (e) => {
         if (char.name === input.value) {
           ui.populateName(char);
           ui.populatePlanet(char);
-          ui.populateStarships(char);
           ui.populateFilms(char);
+          ui.populateStarships(char);
         }
       })
     }
@@ -34,11 +34,16 @@ view.addEventListener('click', (e) => {
 
 // ADD CHARACTER TO TEAM
 addBtn.addEventListener('click', () => {
-  const char = new Character(name.innerText, home.innerText, ships.innerText, films.innerText);
-  ui.addToTeam(char);
-  ui.removeFromViewing();
-  ui.clearInput();
-  ui.createAlert(`${char.name} has been added to your team.`, 'success')
+  if (document.querySelectorAll('.table2 tr').length === 4) {
+    ui.createAlert('You can only have three team members', 'failure')
+  } else {
+    const char = new Character(name.innerText, home.innerText, ships.innerText, films.innerText);
+    ui.addToTeam(char);
+    ui.removeFromViewing();
+    ui.clearInput();
+    ui.createAlert(`${char.name} has been added to your team.`, 'success')
+  }
+
 })
 
 // REMOVE CHARACTER FROM TEAM
@@ -51,4 +56,14 @@ removeBtn.addEventListener('click', () => {
   ui.removeFromViewing();
   ui.clearInput();
 })
+
+
+// TRIGGER THE TYPE AHEAD DROP-DOWN LIST
+input.addEventListener('keyup', () => {
+  ui.displayMatches(characters);
+})
+input.addEventListener('change', () => {
+  ui.displayMatches(characters);
+})
+
 
